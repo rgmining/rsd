@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>An implementation of Review Spammer Detection &mdash; Review Spammer Detection 0.2.0 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="Review Spammer Detection 0.2.0 documentation" href="#"/>
+        <link rel="next" title="rsd package" href="modules/rsd.html"/>
+<meta name="title" content="An implementation of Review Spammer Detection"/>
+<meta name="keywords" content="review,data mining"/>
+<meta name="description" content="This package provides an implementation of Review Spammer Detection (RSD)."/>
+
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="An implementation of Review Spammer Detection"/>
+<meta property="og:description" content="This package provides an implementation of Review Spammer Detection (RSD)." />
+<meta property="og:image" content="https://avatars0.githubusercontent.com/u/22570694" />
+<meta property="og:url" content="https://rgmining.github.io/rsd/" />
+<meta property="og:site_name" content="Review Graph Mining"/>
+<meta content="summary" name="twitter:card" />
+<meta content="@junkawamoto" name="twitter:site" />
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-4734862314145555",
+    enable_page_level_ads: true
+  });
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-82315630-2', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="#" class="icon icon-home"> Review Spammer Detection
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+<div class="local-toc"><ul>
+<li><a class="reference internal" href="#">An implementation of Review Spammer Detection</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#graph-model">Graph model</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#construct-a-graph">Construct a graph</a></li>
+<li><a class="reference internal" href="#analysis">Analysis</a></li>
+<li><a class="reference internal" href="#result">Result</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#api-reference">API Reference</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr/>
+
+
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/rsd.html">rsd package</a></li>
+</ul>
+
+
+<hr />
+<div>
+  <div style="width: 300px; margin: auto;">
+    <ins class="adsbygoogle"
+         style="display:inline-block;width:300px;height:600px"
+         data-ad-client="ca-pub-4734862314145555"
+         data-ad-slot="6934003829"></ins>
+    <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Review Spammer Detection</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#">Docs</a> &raquo;</li>
+        
+      <li>An implementation of Review Spammer Detection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <!-- User defined GitHub URL -->
+              <a href="https://github.com/rgmining/rsd" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="an-implementation-of-review-spammer-detection">
+<h1>An implementation of Review Spammer Detection<a class="headerlink" href="#an-implementation-of-review-spammer-detection" title="Permalink to this headline">¶</a></h1>
+<div class="addthis_inline_share_toolbox"></div><p>This package provides an implementation of Review Spammer Detection (RSD)
+introduced by Guan Wang, <em>et al.</em> in <a class="reference external" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345">ICDM2011</a>.</p>
+<p>This package is a part of <a class="reference external" href="/">Review Graph Mining Project</a>
+which provides other algorithms, datasets, and helper libraries.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Use <cite>pip</cite> to install this package.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>pip install --upgrade rgmining-rsd
+</pre></div>
+</div>
+</div>
+<div class="section" id="graph-model">
+<h2>Graph model<a class="headerlink" href="#graph-model" title="Permalink to this headline">¶</a></h2>
+<p>We assumes review data are represented in a bipartite graph.
+This bipartite graph has two kinds of nodes; reviewers and products.
+One reviewer node and one product node are connected if the reviewer posts
+a review to the product.
+In other words, an edge in the graph represents a review.
+Each review has a rating score.
+We assume the score is normalized in 0 to 1.</p>
+<p>Here is a sample of the bipartite graph.</p>
+<img src="_images/graphviz-a863ebea398b46e78f5d7830c42f4318f1b14c40.png" alt="digraph bipartite {
+   graph [label=&quot;Sample bipartite graph.&quot;, rankdir = LR];
+   &quot;reviewer-0&quot;;
+   &quot;reviewer-1&quot;;
+   &quot;product-0&quot;;
+   &quot;product-1&quot;;
+   &quot;product-2&quot;;
+   &quot;reviewer-0&quot; -&gt; &quot;product-0&quot; [label=&quot;0.2&quot;];
+   &quot;reviewer-0&quot; -&gt; &quot;product-1&quot; [label=&quot;0.9&quot;];
+   &quot;reviewer-0&quot; -&gt; &quot;product-2&quot; [label=&quot;0.6&quot;];
+   &quot;reviewer-1&quot; -&gt; &quot;product-1&quot; [label=&quot;0.1&quot;];
+   &quot;reviewer-1&quot; -&gt; &quot;product-2&quot; [label=&quot;0.7&quot;];
+}" />
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="construct-a-graph">
+<h3>Construct a graph<a class="headerlink" href="#construct-a-graph" title="Permalink to this headline">¶</a></h3>
+<p>In order to run the Fraud Eagle algorithm, you need to create a bipartite graph
+which represents your review data. The graph constructor is
+<code class="xref py py-meth docutils literal"><span class="pre">rsd.ReviewGraph()</span></code>, which is an alias of
+<a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph" title="rsd.graph.ReviewGraph"><code class="xref py py-class docutils literal"><span class="pre">rsd.graph.ReviewGraph</span></code></a>.
+It takes a parameter <cite>theta</cite>.
+See the original article <a class="reference external" href="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345">Review Graph Based Online Store Review Spammer Detection</a>
+for more details about this parameter.</p>
+<p>You can instance the bipartite graph by</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">rsd</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">rsd</span><span class="o">.</span><span class="n">ReviewGraph</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Then, you need to add reviewer nodes, product nodes, and review edges.
+<a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph.new_reviewer" title="rsd.graph.ReviewGraph.new_reviewer"><code class="xref py py-meth docutils literal"><span class="pre">new_reviewer()</span></code></a> and
+<a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph.new_product" title="rsd.graph.ReviewGraph.new_product"><code class="xref py py-meth docutils literal"><span class="pre">new_product()</span></code></a> methods
+of the graph create a reviewer node and a product node, respectively,
+and add them to the graph. Both methods take one argument <cite>name</cite>, i.e. ID of
+the node.
+Note that, the names must be unique in a graph.</p>
+<p><a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph.add_review" title="rsd.graph.ReviewGraph.add_review"><code class="xref py py-meth docutils literal"><span class="pre">add_review()</span></code></a> method add a
+review to the graph. It takes a <cite>reviewer</cite>, a <cite>product</cite>, and a normalized
+rating score which the reviewer posted to the product.
+The normalized rating scores mean they must be in 0 to 1.</p>
+<p>For example, let us assume there are two reviewers and three products
+like the below.</p>
+<img src="_images/graphviz-a863ebea398b46e78f5d7830c42f4318f1b14c40.png" alt="digraph bipartite {
+   graph [label=&quot;Sample bipartite graph.&quot;, rankdir = LR];
+   &quot;reviewer-0&quot;;
+   &quot;reviewer-1&quot;;
+   &quot;product-0&quot;;
+   &quot;product-1&quot;;
+   &quot;product-2&quot;;
+   &quot;reviewer-0&quot; -&gt; &quot;product-0&quot; [label=&quot;0.2&quot;];
+   &quot;reviewer-0&quot; -&gt; &quot;product-1&quot; [label=&quot;0.9&quot;];
+   &quot;reviewer-0&quot; -&gt; &quot;product-2&quot; [label=&quot;0.6&quot;];
+   &quot;reviewer-1&quot; -&gt; &quot;product-1&quot; [label=&quot;0.1&quot;];
+   &quot;reviewer-1&quot; -&gt; &quot;product-2&quot; [label=&quot;0.7&quot;];
+}" />
+<p>The graph can be constructed by the following code.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># Create reviewers and products.</span>
+<span class="c1"># Note that don&#39;t create them using fraud_eagle.graph.Reviewer and</span>
+<span class="c1"># fraud_eagle.graph.Product.</span>
+<span class="n">reviewers</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">new_reviewer</span><span class="p">(</span><span class="s2">&quot;reviewer-{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span>
+<span class="n">products</span> <span class="o">=</span> <span class="p">[</span><span class="n">graph</span><span class="o">.</span><span class="n">new_product</span><span class="p">(</span><span class="s2">&quot;product-{0}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_review</span><span class="p">(</span><span class="n">reviewers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.2</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_review</span><span class="p">(</span><span class="n">reviewers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">products</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.9</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_review</span><span class="p">(</span><span class="n">reviewers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">products</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_review</span><span class="p">(</span><span class="n">reviewers</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">products</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="n">graph</span><span class="o">.</span><span class="n">add_review</span><span class="p">(</span><span class="n">reviewers</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">products</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mf">0.7</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="analysis">
+<h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph.update" title="rsd.graph.ReviewGraph.update"><code class="xref py py-meth docutils literal"><span class="pre">update()</span></code></a> runs one iteration.
+This method returns the amount of update in the iteration.
+You need to run iterations until the amount of update becomes enough small.
+It&#8217;s depended to the review data and the parameter epsilon that how many
+iterations are required to the amount of update becomes small.
+Moreover, sometimes it won&#8217;t be converged.
+Thus, you should set some limitation to the iterations.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;Start iterations.&quot;</span><span class="p">)</span>
+<span class="n">max_iteration</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_iteration</span><span class="p">):</span>
+
+   <span class="c1"># Run one iteration.</span>
+   <span class="n">diff</span> <span class="o">=</span> <span class="n">graph</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+   <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Iteration </span><span class="si">%d</span><span class="s2"> ends. (diff=</span><span class="si">%s</span><span class="s2">)&quot;</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">diff</span><span class="p">)</span>
+
+   <span class="k">if</span> <span class="n">diff</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">**-</span><span class="mi">5</span><span class="p">:</span> <span class="c1"># Set 10^-5 as an acceptable small number.</span>
+       <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="result">
+<h3>Result<a class="headerlink" href="#result" title="Permalink to this headline">¶</a></h3>
+<p>Each reviewer has an anomalous score which representing how the reviewer is
+anomalous. The score is normalized in 0 to 1. To obtain that score,
+use <a class="reference internal" href="modules/rsd.html#rsd.graph.Reviewer.anomalous_score" title="rsd.graph.Reviewer.anomalous_score"><code class="xref py py-meth docutils literal"><span class="pre">anomalous_score</span></code></a>
+property.</p>
+<p>The <a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph" title="rsd.graph.ReviewGraph"><code class="xref py py-class docutils literal"><span class="pre">ReviewGraph</span></code></a> has
+<a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph.reviewers" title="rsd.graph.ReviewGraph.reviewers"><code class="xref py py-meth docutils literal"><span class="pre">reviewers</span></code></a> property,
+which returns a collection of reviewers the graph has.
+Thus, the following code outputs all reviewers&#8217; anomalous score.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">reviewers</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">r</span><span class="o">.</span><span class="n">anomalous_score</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>On the other hand, each product has a summarized ratings computed from all
+reviews posted to the product according to each reviewers&#8217; anomalous score.
+The summarized ratings are also normalized in 0 to 1.
+<a class="reference internal" href="modules/rsd.html#rsd.graph.Product.summary" title="rsd.graph.Product.summary"><code class="xref py py-meth docutils literal"><span class="pre">summary</span></code></a> property returns such
+summarized rating.</p>
+<p>The <a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph" title="rsd.graph.ReviewGraph"><code class="xref py py-class docutils literal"><span class="pre">ReviewGraph</span></code></a> also has
+<a class="reference internal" href="modules/rsd.html#rsd.graph.ReviewGraph.products" title="rsd.graph.ReviewGraph.products"><code class="xref py py-meth docutils literal"><span class="pre">products</span></code></a> property,
+which returns a collection of products.
+Thus, the following code outputs all products&#8217; summarized ratings.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">graph</span><span class="o">.</span><span class="n">products</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">p</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="api-reference">
+<h2>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/rsd.html">rsd package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules/rsd.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules/rsd.html#module-rsd.graph">rsd.graph module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+</ul>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>This software is released under The GNU General Public License Version 3,
+see COPYING for more detail.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules/rsd.html" class="btn btn-neutral float-right" title="rsd package" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2016, Junpei Kawamoto.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.2.0',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+  
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-57f1fa5b740feddd"></script>
+
+
+</body>
+</html>
