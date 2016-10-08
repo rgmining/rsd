@@ -110,8 +110,6 @@ The graph can be constructed by the following code.
 .. code-block:: python
 
    # Create reviewers and products.
-   # Note that don't create them using fraud_eagle.graph.Reviewer and
-   # fraud_eagle.graph.Product.
    reviewers = [graph.new_reviewer("reviewer-{0}".format(i)) for i in range(2)]
    products = [graph.new_product("product-{0}".format(i)) for i in range(3)]
    graph.add_review(reviewers[0], products[0], 0.2)
