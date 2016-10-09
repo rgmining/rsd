@@ -128,6 +128,9 @@ todo_include_todos = False
 # To add GitHub link.
 rst_prolog = """
 :github_url: https://github.com/rgmining/rsd
+:base_url: https://rgmining.github.io/rsd/
+:description: This package provides an implementation of Review Spammer Detection
+    (RSD) introduced by Guan Wang, et al. in ICDM2011.
 """
 
 # -- Options for HTML output ----------------------------------------------
@@ -141,9 +144,9 @@ html_theme = "sphinx_rtd_theme"
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-html_theme_options = {
-    'collapse_navigation': True
-}
+# html_theme_options = {
+#     'collapse_navigation': True
+# }
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
