@@ -1,3 +1,5 @@
+.. _top:
+
 An implementation of Review Spammer Detection
 ================================================
 .. raw:: html
