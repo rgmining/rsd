@@ -229,7 +229,7 @@ html_static_path = ['_static']
 # contain a <link> tag referring to it.  The value of this option must be the
 # base URL from which the finished HTML is served.
 #
-# html_use_opensearch = ''
+html_use_opensearch = 'https://docs.python.org'
 
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 # html_file_suffix = None
