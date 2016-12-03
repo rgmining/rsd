@@ -1,3 +1,6 @@
+:description: This package provides an implementation of Review Spammer Detection
+    (RSD) introduced by Guan Wang, et al. in ICDM2011.
+
 .. _top:
 
 An implementation of Review Spammer Detection
