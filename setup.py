@@ -52,7 +52,7 @@ def load_links_from_file(filepath):
 
 setup(
     name='rgmining-rsd',
-    version='0.2.1',
+    version='0.2.2',
     author="Junpei Kawamoto",
     author_email="kawamoto.junpei@gmail.com",
     description="An implementation of RSD algorithm",
