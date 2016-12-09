@@ -38,7 +38,7 @@ def _load_requires_from_file(filepath):
 
 setup(
     name='rgmining-rsd',
-    version='0.2.0',
+    version='0.2.1',
     author="Junpei Kawamoto",
     author_email="kawamoto.junpei@gmail.com",
     description="An implementation of RSD algorithm",
