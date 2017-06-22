@@ -9,8 +9,8 @@ rsd package
 Submodules
 ----------
 
-rsd.graph module
-----------------
+rsd\.graph module
+-----------------
 
 .. automodule:: rsd.graph
     :members:
