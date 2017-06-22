@@ -14,7 +14,7 @@ See [the documents](https://rgmining.github.io/rsd/) for more information.
 ## Installation
 Use `pip` to install this package.
 
-```
+```shell
 pip install --upgrade rgmining-rsd
 ```
 
