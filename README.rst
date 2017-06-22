@@ -33,5 +33,5 @@ This software is released under The GNU General Public License Version
    :target: https://app.wercker.com/project/byKey/e7e58ae3738e3cfd78fb846a5505672e
 .. |Code Climate| image:: https://codeclimate.com/github/rgmining/rsd/badges/gpa.svg
    :target: https://codeclimate.com/github/rgmining/rsd
-.. |Release| image:: https://img.shields.io/badge/release-0.2.3-brightgreen.svg
-   :target: https://github.com/rgmining/rsd/releases/tag/v0.2.3
+.. |Release| image:: https://img.shields.io/badge/release-0.2.4-brightgreen.svg
+   :target: https://github.com/rgmining/rsd/releases/tag/v0.2.4
