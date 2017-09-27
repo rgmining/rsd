@@ -403,7 +403,7 @@ class ReviewGraph(object):
         if not isinstance(review, Review):
             raise ValueError(
                 "Given review isn't an instance of Review:", review)
-        return self.graph.predecessors(review)
+        return list(self.graph.predecessors(review))
 
     @memoized
     def retrieve_products(self, review):
@@ -418,7 +418,7 @@ class ReviewGraph(object):
         if not isinstance(review, Review):
             raise ValueError(
                 "Given review isn't an instance of Review:", review)
-        return self.graph.successors(review)
+        return list(self.graph.successors(review))
 
     @memoized
     def retrieve_reviews_by_reviewer(self, reviewer):
@@ -433,7 +433,7 @@ class ReviewGraph(object):
         if not isinstance(reviewer, Reviewer):
             raise ValueError(
                 "Given reviewer isn't an instance of Reviewer:", reviewer)
-        return self.graph.successors(reviewer)
+        return list(self.graph.successors(reviewer))
 
     @memoized
     def retrieve_reviews_by_product(self, product):
@@ -448,7 +448,7 @@ class ReviewGraph(object):
         if not isinstance(product, Product):
             raise ValueError(
                 "Given product isn't an instance of Product:", product)
-        return self.graph.predecessors(product)
+        return list(self.graph.predecessors(product))
 
     def retrieve_reviews(self, review, time_diff=None, score_diff=0.25):
         """Find agree and disagree reviews.
