@@ -1,5 +1,5 @@
 #
-#  __init__.py
+#  test_scale.py
 #
 #  Copyright (c) 2016-2022 Junpei Kawamoto
 #
@@ -18,5 +18,31 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
-"""Implement unit tests for common package.
+"""Test case for _scale function.
+
+The scale function is defined as:
+
+.. math::
+
+    {\\rm scale}(v) = \\frac{2}{1 + \\exp(-v)} - 1
+
 """
+from random import random
+
+import numpy as np
+from numpy import testing
+
+from rsd import graph
+
+
+def test() -> None:
+    """Test with random values."""
+    scale = 10
+    for r in (random() * scale - scale / 2 for _ in range(10000)):
+        testing.assert_almost_equal(graph._scale(r), 2 / (1 + np.exp(-r)) - 1)
+
+
+def test_inf() -> None:
+    """Test with inf."""
+    testing.assert_almost_equal(graph._scale(float("inf")), 1)
+    testing.assert_almost_equal(graph._scale(-float("inf")), -1)
