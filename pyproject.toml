@@ -36,6 +36,7 @@ flake8 = "^4.0.1"
 black = "^22.1.0"
 pytest = "^7.1.1"
 pytest-cov = "^3.0.0"
+mypy = "^0.941"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -49,6 +50,16 @@ line-length = 120
 profile = "black"
 line_length = 120
 src_paths = ["rsd", "tests"]
+
+[tool.mypy]
+files = "rsd/**/*.py,tests/**/*.py"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "networkx"
+ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 addopts = "--cov='rsd' --cov-branch"

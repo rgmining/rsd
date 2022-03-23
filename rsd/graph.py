@@ -1,33 +1,34 @@
 #
-# graph.py
+#  graph.py
 #
-# Copyright (c) 2016 Junpei Kawamoto
+#  Copyright (c) 2016-2022 Junpei Kawamoto
 #
-# This file is part of rgmining-rsd.
+#  This file is part of rgmining-rsd.
 #
-# rgmining-rsd is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#  rgmining-rsd is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
 #
-# rgmining-rsd is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+#  rgmining-rsd is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+#  You should have received a copy of the GNU General Public License
+#  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
 """Implementation of RSD.
 """
-from __future__ import absolute_import
+from collections.abc import Collection
+from functools import cache
+from typing import Final, NamedTuple, Optional
+
 import networkx as nx
 import numpy as np
 
-from common import memoized
 
-
-def _scale(v):
+def _scale(v: float) -> float:
     """Scaling a given value.
 
     The output is defined by
@@ -43,10 +44,10 @@ def _scale(v):
       Output value defined above.
     """
     e = np.exp(-v)
-    return 2. / (1. + e) - 1.
+    return float(2.0 / (1.0 + e) - 1.0)
 
 
-class _Node(object):
+class _Node:
     """Abstract class of review graph.
 
     Args:
@@ -56,25 +57,22 @@ class _Node(object):
     Attributes:
       name: name of this node.
     """
+
+    _g: Final["ReviewGraph"]
+    name: Final[str]
+
     __slots__ = ("_g", "name")
 
-    def __init__(self, graph, name=None):
-        if not isinstance(graph, ReviewGraph):
-            raise ValueError(
-                "Given graph isn't an instance of ReviewGraph:", graph)
-
+    def __init__(self, graph: "ReviewGraph", name: Optional[str] = None) -> None:
         self._g = graph
-        if name:
-            self.name = name
-        else:
-            self.name = super(_Node, self).__str__()
+        self.name = name if name else super().__str__()
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, type(self)):
             return False
         return self.name == other.name
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return 13 * hash(type(self)) + 17 * hash(self.name)
 
 
@@ -91,21 +89,25 @@ class Reviewer(_Node):
         reviewer.
     """
 
-    def __init__(self, graph, name=None, anomalous=None):
-        super(Reviewer, self).__init__(graph, name)
+    trustiness: float
+
+    __slots__ = ("trustiness",)
+
+    def __init__(self, graph: "ReviewGraph", name: Optional[str] = None, anomalous: Optional[float] = None) -> None:
+        super().__init__(graph, name)
 
         # If an initial anomalous score is given, use it.
         self.trustiness = 1.0 - anomalous if anomalous else 0.5
 
     @property
-    def anomalous_score(self):
+    def anomalous_score(self) -> float:
         """Returns the anomalous score of this reviewer.
 
         The anomalous score is defined by 1 - trustiness.
         """
         return 1.0 - self.trustiness
 
-    def update_trustiness(self):
+    def update_trustiness(self) -> float:
         """Update trustiness of this reviewer.
 
         The updated trustiness of a reviewer :math:`u` is defined by
@@ -120,7 +122,7 @@ class Reviewer(_Node):
         Returns;
           absolute difference between the old trustiness and updated one.
         """
-        sum_h = 0.
+        sum_h = 0.0
         for re in self._g.retrieve_reviews_by_reviewer(self):
             sum_h += re.honesty
         new = _scale(sum_h)
@@ -129,8 +131,8 @@ class Reviewer(_Node):
         self.trustiness = new
         return diff
 
-    def __str__(self):
-        return "{0}: {1}".format(self.name, self.anomalous_score)
+    def __str__(self) -> str:
+        return f"{self.name}: {self.anomalous_score}"
 
 
 class Product(_Node):
@@ -145,12 +147,16 @@ class Product(_Node):
         product.
     """
 
-    def __init__(self, graph, name=None):
+    reliability: float
+
+    __slots__ = ("reliability",)
+
+    def __init__(self, graph: "ReviewGraph", name: Optional[str] = None):
         super(Product, self).__init__(graph, name)
         self.reliability = 0.5
 
     @property
-    def summary(self):
+    def summary(self) -> float:
         """Summary of reviews.
 
         This value is same as reliability.
@@ -159,7 +165,7 @@ class Product(_Node):
         """
         return self.reliability
 
-    def update_reliability(self):
+    def update_reliability(self) -> float:
         """Update product's reliability.
 
         The new reliability is defined by
@@ -178,10 +184,10 @@ class Product(_Node):
         Returns:
           absolute difference between old reliability and new one.
         """
-        res = 0.
+        res = 0.0
 
         reviews = self._g.retrieve_reviews_by_product(self)
-        s = np.median([re.rating for re in reviews])
+        s = float(np.median([re.rating for re in reviews]))
         for re in reviews:
             for r in self._g.retrieve_reviewers(re):
                 res += r.trustiness * (re.rating - s)
@@ -191,21 +197,29 @@ class Product(_Node):
         self.reliability = new
         return diff
 
-    def __str__(self):
-        return "{0}: {1}".format(self.name, self.summary)
+    def __str__(self) -> str:
+        return f"{self.name}: {self.summary}"
 
 
-class Review(object):
+class Review:
     """A graph entity representing a review.
 
     Attributes:
       rating: rating score of this review.
       honesty: honesty score.
-      aggreement: aggreement score.
+      agreement: agreement score.
       time: time this review posted.
     """
 
-    def __init__(self, graph, time, rating):
+    _g: Final["ReviewGraph"]
+    time: Final[int]
+    rating: Final[float]
+    honesty: float
+    agreement: float
+
+    __slots__ = ("_g", "rating", "honesty", "agreement", "time")
+
+    def __init__(self, graph: "ReviewGraph", time: int, rating: float) -> None:
         self._g = graph
         self.time = time
         self.rating = rating
@@ -213,7 +227,7 @@ class Review(object):
         self.honesty = 0.5
         self.agreement = 0.5
 
-    def update_honesty(self):
+    def update_honesty(self) -> float:
         """Update honesty of this review.
 
         The updated honesty of this review :math:`r` is defined by
@@ -228,7 +242,7 @@ class Review(object):
         Returns:
           absolute difference between old honesty and new one.
         """
-        res = 0.
+        res = 0.0
         for p in self._g.retrieve_products(self):
             res += abs(p.reliability) * self.agreement
 
@@ -236,7 +250,7 @@ class Review(object):
         self.honesty = res
         return diff
 
-    def update_agreement(self, delta):
+    def update_agreement(self, delta: float) -> float:
         """Update agreement of this review.
 
         This process considers reviews posted in a close time span of this review.
@@ -268,10 +282,10 @@ class Review(object):
         Returns:
           absolute difference between old agreement and new one.
         """
-        score_diff = 1. / 5.
+        score_diff = 1.0 / 5.0
         agree, disagree = self._g.retrieve_reviews(self, delta, score_diff)
 
-        res = 0.
+        res = 0.0
         for re in agree:
             for r in self._g.retrieve_reviewers(re):
                 res += r.trustiness
@@ -284,12 +298,16 @@ class Review(object):
         self.agreement = new
         return diff
 
-    def __str__(self):
-        return "Review (time={0}, rating={1}, agreement={2}, honesty={3})".format(
-            self.time, self.rating, self.agreement, self.honesty)
+    def __str__(self) -> str:
+        return f"Review (time={self.time}, rating={self.rating}, agreement={self.agreement}, honesty={self.honesty})"
 
 
-class ReviewGraph(object):
+class ReviewSet(NamedTuple):
+    agree: Collection[Review]
+    disagree: Collection[Review]
+
+
+class ReviewGraph:
     """Review graph is a bipartite graph of which one set of nodes represent
         reviewers and the other set of nodes represent products.
 
@@ -302,8 +320,15 @@ class ReviewGraph(object):
       reviews: a collection of reviews.
     """
 
-    def __init__(self, theta):
-        """ Construct bipartite graph.
+    graph: Final[nx.DiGraph]
+    reviewers: Final[list[Reviewer]]
+    products: Final[list[Product]]
+    reviews: Final[list[Review]]
+    _theta: float
+    _delta: float | None
+
+    def __init__(self, theta: float) -> None:
+        """Construct bipartite graph.
 
         Args:
           theta: A parameter for updating.
@@ -318,7 +343,7 @@ class ReviewGraph(object):
         self._delta = None
 
     @property
-    def delta(self):
+    def delta(self) -> float:
         """Time delta.
 
         This value is defined by
@@ -333,11 +358,12 @@ class ReviewGraph(object):
             self._delta = (max_time - min_time) * self._theta
         return self._delta
 
-    def new_reviewer(self, name=None, anomalous=None):
-        """ Create a new reviewer.
+    def new_reviewer(self, name: Optional[str] = None, anomalous: Optional[float] = None) -> Reviewer:
+        """Create a new reviewer.
 
         Args:
-            name: the name of the new review.
+            name: the name of the new reviewer.
+            anomalous: the anomalous score of the new reviewer.
 
         Returns:
             A new reviewer instance.
@@ -347,8 +373,8 @@ class ReviewGraph(object):
         self.reviewers.append(n)
         return n
 
-    def new_product(self, name=None):
-        """ Create a new product.
+    def new_product(self, name: Optional[str] = None) -> Product:
+        """Create a new product.
 
         Args:
             name: The name of the new product.
@@ -361,8 +387,8 @@ class ReviewGraph(object):
         self.products.append(n)
         return n
 
-    def add_review(self, reviewer, product, review, time=None):
-        """ Add a new review.
+    def add_review(self, reviewer: Reviewer, product: Product, review: float, time: Optional[int] = None) -> Review:
+        """Add a new review.
 
         Args:
           reviewer:  An instance of Reviewer.
@@ -373,13 +399,6 @@ class ReviewGraph(object):
         Returns:
           the new review object.
         """
-        if not isinstance(reviewer, Reviewer):
-            raise ValueError(
-                "Given reviewer isn't an instance of Reviewer:", reviewer)
-        elif not isinstance(product, Product):
-            raise ValueError(
-                "Given product isn't an instance of Product:", product)
-
         if not time:
             re = Review(self, len(self.reviews), review)
         else:
@@ -390,9 +409,9 @@ class ReviewGraph(object):
         self.graph.add_edge(re, product)
         return re
 
-    @memoized
-    def retrieve_reviewers(self, review):
-        """ Find reviewers associated with a review.
+    @cache
+    def retrieve_reviewers(self, review: Review) -> Collection[Reviewer]:
+        """Find reviewers associated with a review.
 
         Args:
             review: A review instance.
@@ -400,13 +419,10 @@ class ReviewGraph(object):
         Returns:
             A list of reviewers associated with the review.
         """
-        if not isinstance(review, Review):
-            raise ValueError(
-                "Given review isn't an instance of Review:", review)
         return list(self.graph.predecessors(review))
 
-    @memoized
-    def retrieve_products(self, review):
+    @cache
+    def retrieve_products(self, review: Review) -> Collection[Product]:
         """Find products associated with a review.
 
         Args:
@@ -415,14 +431,11 @@ class ReviewGraph(object):
         Returns:
             A list of products associated with the given review.
         """
-        if not isinstance(review, Review):
-            raise ValueError(
-                "Given review isn't an instance of Review:", review)
         return list(self.graph.successors(review))
 
-    @memoized
-    def retrieve_reviews_by_reviewer(self, reviewer):
-        """ Find reviews given by a reviewer.
+    @cache
+    def retrieve_reviews_by_reviewer(self, reviewer: Reviewer) -> Collection[Review]:
+        """Find reviews given by a reviewer.
 
         Args:
             reviewer: Reviewer
@@ -430,14 +443,11 @@ class ReviewGraph(object):
         Returns:
             A list of reviews given by the reviewer.
         """
-        if not isinstance(reviewer, Reviewer):
-            raise ValueError(
-                "Given reviewer isn't an instance of Reviewer:", reviewer)
         return list(self.graph.successors(reviewer))
 
-    @memoized
-    def retrieve_reviews_by_product(self, product):
-        """ Find reviews to a product.
+    @cache
+    def retrieve_reviews_by_product(self, product: Product) -> Collection[Review]:
+        """Find reviews to a product.
 
         Args:
             product: Product
@@ -445,12 +455,11 @@ class ReviewGraph(object):
         Returns:
             A list of reviews to the product.
         """
-        if not isinstance(product, Product):
-            raise ValueError(
-                "Given product isn't an instance of Product:", product)
         return list(self.graph.predecessors(product))
 
-    def retrieve_reviews(self, review, time_diff=None, score_diff=0.25):
+    def retrieve_reviews(
+        self, review: Review, time_diff: Optional[float] = None, score_diff: float = 0.25
+    ) -> ReviewSet:
         """Find agree and disagree reviews.
 
         This method retrieve two groups of reviews.
@@ -478,10 +487,10 @@ class ReviewGraph(object):
                         agree.append(re)
                     else:
                         disagree.append(re)
-        return agree, disagree
+        return ReviewSet(agree, disagree)
 
-    def update(self):
-        """ Update reviewers' anomalous scores and products' summaries.
+    def update(self) -> float:
+        """Update reviewers' anomalous scores and products' summaries.
 
         This update process consists of four steps;
 

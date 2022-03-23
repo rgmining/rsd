@@ -1,26 +1,26 @@
 #
-# __init__.py
+#  __init__.py
 #
-# Copyright (c) 2016 Junpei Kawamoto
+#  Copyright (c) 2016-2022 Junpei Kawamoto
 #
-# This file is part of rgmining-rsd.
+#  This file is part of rgmining-rsd.
 #
-# rgmining-rsd is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+#  rgmining-rsd is free software: you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation, either version 3 of the License, or
+#  (at your option) any later version.
 #
-# rgmining-rsd is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+#  rgmining-rsd is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+#  You should have received a copy of the GNU General Public License
+#  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
 """Review Graph Based Online Store Review Spammer Detection.
 
-RSD is an algorithm instoduced by Guan Wang, et al. in ICDM2011_.
+RSD is an algorithm introduced by Guan Wang, et al. in ICDM2011_.
 This algorithm represents review data as a following graph.
 
 .. graphviz::
@@ -55,5 +55,10 @@ The root module has an alias of :class:`rsd.graph.ReviewGraph` as `ReviewGraph`.
 .. _ICDM2011: http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345
 
 """
-from __future__ import absolute_import
+from typing import Final
+
 from rsd.graph import ReviewGraph
+
+__version__: Final = "0.2.5"
+
+__all__: Final = ("ReviewGraph", "__version__")
