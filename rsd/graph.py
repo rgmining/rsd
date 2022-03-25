@@ -53,15 +53,14 @@ class _Node:
     Args:
       graph: the graph object this node will belong to.
       name: name of this node.
-
-    Attributes:
-      name: name of this node.
     """
 
-    _g: Final["ReviewGraph"]
     name: Final[str]
+    """Name of this node."""
+    _g: Final["ReviewGraph"]
+    """Graph object this node belongs to."""
 
-    __slots__ = ("_g", "name")
+    __slots__ = ("name", "_g")
 
     def __init__(self, graph: "ReviewGraph", name: Optional[str] = None) -> None:
         self._g = graph
@@ -83,13 +82,10 @@ class Reviewer(_Node):
       graph: Graph object this reviewer belongs to.
       name: Name of this reviewer.
       anomalous: Initial anomalous score (default: None).
-
-    Attributes:
-      trustiness: a float value in [0, 1] which represents trustiness of this
-        reviewer.
     """
 
     trustiness: float
+    """A float value in [0, 1] which represents trustiness of this reviewer."""
 
     __slots__ = ("trustiness",)
 
@@ -141,13 +137,10 @@ class Product(_Node):
     Args:
       graph: Graph object this product belongs to.
       name: Name of this product.
-
-    Attributes:
-      reliability: a float value in [0, 1], which represents reliability of this
-        product.
     """
 
     reliability: float
+    """A float value in [0, 1], which represents reliability of this product."""
 
     __slots__ = ("reliability",)
 
@@ -204,20 +197,24 @@ class Product(_Node):
 class Review:
     """A graph entity representing a review.
 
-    Attributes:
-      rating: rating score of this review.
-      honesty: honesty score.
-      agreement: agreement score.
-      time: time this review posted.
+    Args:
+      graph: Graph object this product belongs to.
+      time: When this review is posted.
+      rating: Rating of this review.
     """
 
-    _g: Final["ReviewGraph"]
-    time: Final[int]
     rating: Final[float]
+    """Rating score of this review."""
     honesty: float
+    """Honesty score."""
     agreement: float
+    """Agreement score."""
+    time: Final[int]
+    """Time when this review posted."""
 
-    __slots__ = ("_g", "rating", "honesty", "agreement", "time")
+    _g: Final["ReviewGraph"]
+
+    __slots__ = ("rating", "honesty", "agreement", "time", "_g")
 
     def __init__(self, graph: "ReviewGraph", time: int, rating: float) -> None:
         self._g = graph
@@ -303,42 +300,42 @@ class Review:
 
 
 class ReviewSet(NamedTuple):
+    """Pair of agreed reviews and disagreed reviews."""
+
     agree: Collection[Review]
+    """Collection of agreed reviews."""
     disagree: Collection[Review]
+    """Collection of disagreed reviews."""
 
 
 class ReviewGraph:
-    """Review graph is a bipartite graph of which one set of nodes represent
-        reviewers and the other set of nodes represent products.
+    """A bipartite graph of which one set of nodes represent reviewers and the other set of nodes represent products.
 
     Each edge has a label representing a review.
 
-    Attributes:
-      graph: graph object of networkx.
-      reviewers: a collection of reviewers.
-      products: a collection of products.
-      reviews: a collection of reviews.
+    Args:
+        theta: A parameter for updating.
+            See `the paper <https://ieeexplore.ieee.org/document/6137345?arnumber=6137345>`__ for more details.
     """
 
     graph: Final[nx.DiGraph]
+    """Graph object of networkx."""
     reviewers: Final[list[Reviewer]]
+    """Collection of reviewers."""
     products: Final[list[Product]]
+    """Collection of products."""
     reviews: Final[list[Review]]
-    _theta: float
+    """Collection of reviews."""
+    _theta: Final[float]
+    """Parameter of the algorithm."""
     _delta: float | None
+    """Cached time delta."""
 
     def __init__(self, theta: float) -> None:
-        """Construct bipartite graph.
-
-        Args:
-          theta: A parameter for updating.
-        """
         self.graph = nx.DiGraph()
-
         self.reviewers = []
         self.products = []
         self.reviews = []
-
         self._theta = theta
         self._delta = None
 
@@ -407,6 +404,7 @@ class ReviewGraph:
         self.reviews.append(re)
         self.graph.add_edge(reviewer, re)
         self.graph.add_edge(re, product)
+        self._delta = None
         return re
 
     @cache
@@ -494,10 +492,10 @@ class ReviewGraph:
 
         This update process consists of four steps;
 
-        1. Update honesties of reviews (See also :meth:`Review.update_honesty`),
-        2. Update trustinesses of reviewers
+        1. Update honesty of reviews (See also :meth:`Review.update_honesty`),
+        2. Update rustiness of reviewers
            (See also :meth:`Reviewer.update_trustiness`),
-        3. Update reliablities of products
+        3. Update reliability of products
            (See also :meth:`Product.update_reliability`),
         4. Update agreements of reviews
            (See also :meth:`Review.update_agreement`).

@@ -1,21 +1,24 @@
 :description: This package provides an implementation of Review Spammer Detection
     (RSD) introduced by Guan Wang, et al. in ICDM2011.
 
-.. _top:
-
-An implementation of Review Spammer Detection
+Review Spammer Detection
 ================================================
 .. raw:: html
 
    <div class="addthis_inline_share_toolbox"></div>
 
-This package provides an implementation of Review Spammer Detection (RSD)
-introduced by Guan Wang, *et al.* in ICDM2011_.
+This package provides an implementation of Review Spammer Detection
+(RSD) introduced in this paper:
+
+- `Guan Wang <https://www.linkedin.com/in/guanwang/>`__,
+  `Sihong Xie <https://engineering.lehigh.edu/faculty/sihong-xie>`__,
+  `Bing Liu <https://www.cs.uic.edu/~liub/>`__, and
+  `Philip S. Yu <https://www.cs.uic.edu/~psyu/>`__,
+  "`Review Graph Based Online Store Review Spammer Detection <https://ieeexplore.ieee.org/document/6137345?arnumber=6137345>`__,"
+  Proc. of `IEEE 11th International Conference on Data Mining <https://ieeexplore.ieee.org/xpl/conhome/6135855/proceeding>`__, 2011, pp. 1242-1247.
 
 This package is a part of `Review Graph Mining Project </>`_
-which provides other algorithms, datasets, and helper libraries.
-
-.. _ICDM2011: http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345
+which provides other algorithms and datasets.
 
 
 Installation
@@ -29,7 +32,7 @@ Use `pip` to install this package.
 
 Graph model
 -------------
-We assumes review data are represented in a bipartite graph.
+We assume review data are represented in a bipartite graph.
 This bipartite graph has two kinds of nodes; reviewers and products.
 One reviewer node and one product node are connected if the reviewer posts
 a review to the product.
@@ -115,8 +118,8 @@ The graph can be constructed by the following code.
 .. code-block:: python
 
    # Create reviewers and products.
-   reviewers = [graph.new_reviewer("reviewer-{0}".format(i)) for i in range(2)]
-   products = [graph.new_product("product-{0}".format(i)) for i in range(3)]
+   reviewers = [graph.new_reviewer(f"reviewer-{i}") for i in range(2)]
+   products = [graph.new_product(f"product-{i}") for i in range(3)]
    graph.add_review(reviewers[0], products[0], 0.2)
    graph.add_review(reviewers[0], products[1], 0.9)
    graph.add_review(reviewers[0], products[2], 0.6)
@@ -142,7 +145,7 @@ Thus, you should set some limitation to the iterations.
 
       # Run one iteration.
       diff = graph.update()
-      print("Iteration %d ends. (diff=%s)", i + 1, diff)
+      print(f"Iteration {i + 1} ends. (diff={diff})")
 
       if diff < 10**-5: # Set 10^-5 as an acceptable small number.
           break

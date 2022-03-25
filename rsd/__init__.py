@@ -50,7 +50,7 @@ This algorithm represents review data as a following graph.
     "r3p2" -> "d_r3p2" [style=dotted];
   }
 
-The root module has an alias of :class:`rsd.graph.ReviewGraph` as `ReviewGraph`.
+This package exports `ReviewGraph` which is an alias of :class:`rsd.graph.ReviewGraph`.
 
 .. _ICDM2011: http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345
 
