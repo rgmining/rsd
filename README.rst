@@ -1,7 +1,9 @@
 An implementation of Review Spammer Detection
 =============================================
 
-|GPLv3| |Build Status| |wercker status| |Code Climate| |Release|
+|GPLv3| |Build Status| |Maintainability| |Test Coverage| |Release|
+
+|Logo|
 
 This package provides an implementation of Review Spammer Detection
 (RSD) introduced in this paper:
@@ -33,11 +35,13 @@ This software is released under The GNU General Public License Version
 
 .. |GPLv3| image:: https://img.shields.io/badge/license-GPLv3-blue.svg
    :target: https://www.gnu.org/copyleft/gpl.html
-.. |Build Status| image:: https://travis-ci.org/rgmining/rsd.svg?branch=master
-   :target: https://travis-ci.org/rgmining/rsd
-.. |wercker status| image:: https://app.wercker.com/status/e7e58ae3738e3cfd78fb846a5505672e/s/master
-   :target: https://app.wercker.com/project/byKey/e7e58ae3738e3cfd78fb846a5505672e
-.. |Code Climate| image:: https://codeclimate.com/github/rgmining/rsd/badges/gpa.svg
-   :target: https://codeclimate.com/github/rgmining/rsd
+.. |Build Status| image:: https://github.com/rgmining/rsd/actions/workflows/python-lib.yaml/badge.svg
+   :target: https://github.com/rgmining/rsd/actions/workflows/python-lib.yaml
+.. |Maintainability| image:: https://api.codeclimate.com/v1/badges/6461704a370307ee0d55/maintainability
+   :target: https://codeclimate.com/github/rgmining/rsd/maintainability
+.. |Test Coverage| image:: https://api.codeclimate.com/v1/badges/6461704a370307ee0d55/test_coverage
+   :target: https://codeclimate.com/github/rgmining/rsd/test_coverage
 .. |Release| image:: https://img.shields.io/badge/release-0.2.5-brightgreen.svg
-   :target: https://github.com/rgmining/rsd/releases/tag/v0.2.5
+   :target: https://pypi.org/project/rgmining-rsd/
+.. |Logo| image:: https://rgmining.github.io/synthetic/_static/image.png
+   :target: https://rgmining.github.io/rsd/
