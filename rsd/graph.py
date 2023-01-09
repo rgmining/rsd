@@ -328,7 +328,7 @@ class ReviewGraph:
     """Collection of reviews."""
     _theta: Final[float]
     """Parameter of the algorithm."""
-    _delta: float | None
+    _delta: Optional[float]
     """Cached time delta."""
 
     def __init__(self, theta: float) -> None:
