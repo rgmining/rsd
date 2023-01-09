@@ -4,8 +4,14 @@ An implementation of Review Spammer Detection
 |GPLv3| |Build Status| |wercker status| |Code Climate| |Release|
 
 This package provides an implementation of Review Spammer Detection
-(RSD) introduced by Guan Wang, *et al.* in
-`ICDM2011 <http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345>`__
+(RSD) introduced in this paper:
+
+- `Guan Wang <https://www.linkedin.com/in/guanwang/>`__,
+  `Sihong Xie <https://engineering.lehigh.edu/faculty/sihong-xie>`__,
+  `Bing Liu <https://www.cs.uic.edu/~liub/>`__, and
+  `Philip S. Yu <https://www.cs.uic.edu/~psyu/>`__,
+  "`Review Graph Based Online Store Review Spammer Detection <https://ieeexplore.ieee.org/document/6137345?arnumber=6137345>`__,"
+  Proc. of `IEEE 11th International Conference on Data Mining <https://ieeexplore.ieee.org/xpl/conhome/6135855/proceeding>`__, 2011, pp. 1242-1247.
 
 See `the documents <https://rgmining.github.io/rsd/>`__ for more
 information.

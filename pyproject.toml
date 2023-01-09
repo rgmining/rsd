@@ -1,0 +1,67 @@
+[tool.poetry]
+name = "rgmining-rsd"
+version = "0.2.5"
+description = "An implementation of Review Spammer Detection algorithm"
+license = "GPL-3.0-only"
+authors = ["Junpei Kawamoto <kawamoto.junpei@gmail.com>"]
+readme = "README.rst"
+homepage = "https://rgmining.github.io/rsd/"
+repository = "https://github.com/rgmining/rsd"
+documentation = "https://rgmining.github.io/rsd/"
+keywords = ["review", "graph", "mining", "algorithm", "icdm"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Natural Language :: English",
+    "Programming Language :: Python",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Scientific/Engineering :: Information Analysis"
+]
+packages = [
+    { include = "rsd" },
+]
+include = ["COPYING"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+numpy = "^1.22.3"
+networkx = "^3.0.0"
+
+[tool.poetry.group.dev.dependencies]
+bump2version = "^1.0.1"
+pre-commit = "^2.17.0"
+isort = "^5.10.1"
+flake8 = "^4.0.1"
+black = "^22.1.0"
+pytest = "^7.1.1"
+pytest-cov = "^3.0.0"
+mypy = "^0.941"
+Sphinx = "^4.4.0"
+sphinx-rtd-theme = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+target-version = ['py39']
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
+src_paths = ["rsd", "tests"]
+
+[tool.mypy]
+files = "rsd/**/*.py,tests/**/*.py"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = "networkx"
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "--cov='rsd' --cov-branch"
