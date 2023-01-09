@@ -2,6 +2,9 @@ rsd package
 ===========
 
 .. automodule:: rsd
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 Submodules
 ----------

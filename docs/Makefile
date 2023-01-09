@@ -48,16 +48,10 @@ help:
 .PHONY: clean
 clean:
 	rm -rf $(BUILDDIR)/*
-	rm -rf source/modules
 
 .PHONY: sphinx-apidoc
 sphinx-apidoc:
 	$(SPHINXAPIDOC) -f -M -o source/modules "../rsd/"
-	rm source/modules/modules.rst
-
-.PHONY: sphinx-apidoc-test
-sphinx-apidoc-test:
-	$(SPHINXAPIDOC) -f -M source/modules "../tests/"
 	rm source/modules/modules.rst
 
 .PHONY: html

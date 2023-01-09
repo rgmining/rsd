@@ -47,7 +47,7 @@ def _scale(v: float) -> float:
     return float(2.0 / (1.0 + e) - 1.0)
 
 
-class _Node:
+class Node:
     """Abstract class of review graph.
 
     Args:
@@ -75,7 +75,7 @@ class _Node:
         return 13 * hash(type(self)) + 17 * hash(self.name)
 
 
-class Reviewer(_Node):
+class Reviewer(Node):
     """A node class representing a reviewer.
 
     Args:
@@ -131,7 +131,7 @@ class Reviewer(_Node):
         return f"{self.name}: {self.anomalous_score}"
 
 
-class Product(_Node):
+class Product(Node):
     """A node class representing a product.
 
     Args:
