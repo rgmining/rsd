@@ -14,7 +14,6 @@
 # serve to show the default.
 from datetime import datetime
 
-import sphinx_rtd_theme
 
 import rsd
 
@@ -149,8 +148,6 @@ html_context = {
 # documentation.
 #
 html_theme_options = {"analytics_id": "G-LQ8YQ4M5D8"}
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
@@ -368,7 +365,7 @@ texinfo_documents = [
 
 
 # Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"https://docs.python.org/": None}
+intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
 
 
 # -- Options for autodoc output -------------------------------------------
