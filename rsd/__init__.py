@@ -60,6 +60,6 @@ from typing import Final
 
 from rsd.graph import ReviewGraph
 
-__version__: Final = "0.3.3"
+__version__: Final = "0.3.4"
 
 __all__: Final = ("ReviewGraph", "__version__")
