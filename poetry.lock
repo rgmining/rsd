@@ -561,7 +561,7 @@ version = "2.2.4"
 description = "Fundamental package for array computing in Python"
 optional = false
 python-versions = ">=3.10"
-groups = ["main"]
+groups = ["main", "dev"]
 files = [
     {file = "numpy-2.2.4-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:8146f3550d627252269ac42ae660281d673eb6f8b32f113538e0cc2a9aed42b9"},
     {file = "numpy-2.2.4-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:e642d86b8f956098b564a45e6f6ce68a22c2c97a04f5acd3f221f57b8cb850ae"},
@@ -1099,6 +1099,21 @@ files = [
 ]
 
 [[package]]
+name = "types-networkx"
+version = "3.4.2.20250312"
+description = "Typing stubs for networkx"
+optional = false
+python-versions = ">=3.9"
+groups = ["dev"]
+files = [
+    {file = "types_networkx-3.4.2.20250312-py3-none-any.whl", hash = "sha256:3d2a61fc4c57d8a2032607b60c13ee4a7dd9cc5750667ecc882dbba2d57dbdfd"},
+    {file = "types_networkx-3.4.2.20250312.tar.gz", hash = "sha256:49f4e801d9c1631b8140ef33c47ad17a20db6672850e4909a60df0edc8d76fc6"},
+]
+
+[package.dependencies]
+numpy = ">=1.20"
+
+[[package]]
 name = "typing-extensions"
 version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
@@ -1180,4 +1195,4 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10"
-content-hash = "c6d2637af118bc06103d3c44bfa59d3127a001bcb7e9d5fd625b8b4264a2eb58"
+content-hash = "91069ad98e61f60714ec1b7039c69ad92c66c7877033fb72584e095625a3fb34"
