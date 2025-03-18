@@ -1,7 +1,7 @@
 #
 #  test_graph.py
 #
-#  Copyright (c) 2016-2022 Junpei Kawamoto
+#  Copyright (c) 2016-2025 Junpei Kawamoto
 #
 #  This file is part of rgmining-rsd.
 #
@@ -19,8 +19,7 @@
 #  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-"""Unit tests for rsd.graph module.
-"""
+"""Unit tests for rsd.graph module."""
 
 import pytest
 from numpy import testing

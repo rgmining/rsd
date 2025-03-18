@@ -1,7 +1,7 @@
 #
 #  test_scale.py
 #
-#  Copyright (c) 2016-2022 Junpei Kawamoto
+#  Copyright (c) 2016-2025 Junpei Kawamoto
 #
 #  This file is part of rgmining-rsd.
 #
@@ -27,6 +27,7 @@ The scale function is defined as:
     {\\rm scale}(v) = \\frac{2}{1 + \\exp(-v)} - 1
 
 """
+
 from random import random
 
 import numpy as np

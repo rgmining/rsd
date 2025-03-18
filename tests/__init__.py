@@ -1,7 +1,7 @@
 #
 #  __init__.py
 #
-#  Copyright (c) 2016-2022 Junpei Kawamoto
+#  Copyright (c) 2016-2025 Junpei Kawamoto
 #
 #  This file is part of rgmining-rsd.
 #
@@ -18,5 +18,4 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
-"""Implement unit tests for common package.
-"""
+"""Implement unit tests for common package."""
