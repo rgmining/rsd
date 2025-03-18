@@ -1,7 +1,7 @@
 #
 #  graph.py
 #
-#  Copyright (c) 2016-2022 Junpei Kawamoto
+#  Copyright (c) 2016-2025 Junpei Kawamoto
 #
 #  This file is part of rgmining-rsd.
 #
@@ -18,8 +18,8 @@
 #  You should have received a copy of the GNU General Public License
 #  along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 #
-"""Implementation of RSD.
-"""
+"""Implementation of RSD."""
+
 from collections.abc import Collection
 from functools import cache
 from typing import Final, NamedTuple, Optional

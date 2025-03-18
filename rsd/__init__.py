@@ -1,7 +1,7 @@
 #
 #  __init__.py
 #
-#  Copyright (c) 2016-2022 Junpei Kawamoto
+#  Copyright (c) 2016-2025 Junpei Kawamoto
 #
 #  This file is part of rgmining-rsd.
 #
@@ -55,6 +55,7 @@ This package exports `ReviewGraph` which is an alias of :class:`rsd.graph.Review
 .. _ICDM2011: http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6137345
 
 """
+
 from typing import Final
 
 from rsd.graph import ReviewGraph

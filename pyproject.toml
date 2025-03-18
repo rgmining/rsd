@@ -1,77 +1,74 @@
-[tool.poetry]
+[build-system]
+build-backend = "poetry.core.masonry.api"
+
+requires = [ "poetry-core>=2" ]
+
+[project]
 name = "rgmining-rsd"
 version = "0.3.3"
 description = "An implementation of Review Spammer Detection algorithm"
-license = "GPL-3.0-only"
-authors = ["Junpei Kawamoto <kawamoto.junpei@gmail.com>"]
 readme = "README.rst"
-homepage = "https://rgmining.github.io/rsd/"
-repository = "https://github.com/rgmining/rsd"
-documentation = "https://rgmining.github.io/rsd/"
-keywords = ["review", "graph", "mining", "algorithm", "icdm"]
+keywords = [ "algorithm", "graph", "icdm", "mining", "review" ]
+license = "GPL-3.0-only"
+authors = [
+  { name = "Junpei Kawamoto", email = "kawamoto.junpei@gmail.com" },
+]
+requires-python = ">=3.11"
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
-    "Natural Language :: English",
-    "Programming Language :: Python",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Software Development :: Libraries",
-    "Topic :: Scientific/Engineering :: Information Analysis"
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+  "Natural Language :: English",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Topic :: Software Development :: Libraries",
 ]
-packages = [
-    { include = "rsd" },
-]
-include = ["COPYING"]
 
-[tool.poetry.dependencies]
-python = ">=3.9,<3.13"
-numpy = "^1.26.4"
-networkx = "^3.2.1"
+dependencies = [
+  "networkx>=3.2.1",
+  "numpy>=2.2",
+]
+
+urls.documentation = "https://rgmining.github.io/rsd/"
+urls.homepage = "https://rgmining.github.io/rsd/"
+urls.repository = "https://github.com/rgmining/rsd"
+
+[tool.poetry]
+packages = [
+  { include = "rsd" },
+]
+include = [ "COPYING" ]
 
 [tool.poetry.group.dev.dependencies]
 bump2version = "^1.0.1"
-pre-commit = "^3.7.0"
-isort = "^5.10.1"
-flake8 = "^7.0.0"
-black = "^24.3.0"
+pre-commit = "^4.1"
+pre-commit-uv = "^4.1.4"
 pytest = "^8.1.1"
 pytest-cov = "^5.0.0"
 mypy = "^1.9.0"
-tox = "^4.2.6"
+ruff = "^0.11.0"
+types-networkx = "^3.4.2.20250312"
 
 [tool.poetry.group.docs]
 optional = true
 
 [tool.poetry.group.docs.dependencies]
-sphinx = "^5.3.0"
-sphinx-rtd-theme = "^1.2.2"
+sphinx = "^8.2.3"
+sphinx-rtd-theme = "^3.0.2"
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.black]
-target-version = ['py39']
+[tool.ruff]
+target-version = "py310"
 line-length = 120
 
-[tool.isort]
-profile = "black"
-line_length = 120
-src_paths = ["rsd", "tests"]
+[tool.pytest.ini_options]
+addopts = "--cov=rsd --cov-branch --cov-report=term-missing --cov-report=xml"
 
 [tool.mypy]
 files = "rsd/**/*.py,tests/**/*.py"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
-
-[[tool.mypy.overrides]]
-module = "networkx"
-ignore_missing_imports = true
-
-[tool.pytest.ini_options]
-addopts = "--cov=rsd --cov-branch --cov-report=term-missing --cov-report=xml"
