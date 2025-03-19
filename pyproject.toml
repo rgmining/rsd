@@ -61,7 +61,7 @@ sphinx = "^8.2.3"
 sphinx-rtd-theme = "^3.0.2"
 
 [tool.ruff]
-target-version = "py310"
+target-version = "py311"
 line-length = 120
 
 [tool.pytest.ini_options]
@@ -79,9 +79,6 @@ pre_commit_hooks = [
 filename = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
-
-[[tool.bumpversion.files]]
-filename = "rsd/__init__.py"
 
 [[tool.bumpversion.files]]
 filename = "README.rst"
