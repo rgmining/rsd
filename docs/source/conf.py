@@ -14,8 +14,7 @@
 # serve to show the default.
 from datetime import datetime
 
-
-import rsd
+from importlib.metadata import version as get_version
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -67,7 +66,7 @@ author = "Junpei Kawamoto"
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
-release = rsd.__version__
+release = get_version("rgmining-rsd")
 # The short X.Y version.
 version = ".".join(release.split(".")[:2])
 
@@ -253,122 +252,3 @@ html_use_opensearch = "https://docs.python.org"
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = "ReviewGraphMiningReviewSpammerDetectiondoc"
-
-# -- Options for LaTeX output ---------------------------------------------
-
-latex_elements = {
-    # The paper size ('letterpaper' or 'a4paper').
-    #
-    # 'papersize': 'letterpaper',
-    # The font size ('10pt', '11pt' or '12pt').
-    #
-    # 'pointsize': '10pt',
-    # Additional stuff for the LaTeX preamble.
-    #
-    # 'preamble': '',
-    # Latex figure (float) alignment
-    #
-    # 'figure_align': 'htbp',
-}
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-    (
-        master_doc,
-        "ReviewGraphMiningReviewSpammerDetection.tex",
-        "Review Graph Mining Review Spammer Detection Documentation",
-        "Junpei Kawamoto",
-        "manual",
-    ),
-]
-
-# The name of an image file (relative to this directory) to place at the top of
-# the title page.
-#
-# latex_logo = None
-
-# For "manual" documents, if this is true, then toplevel headings are parts,
-# not chapters.
-#
-# latex_use_parts = False
-
-# If true, show page references after internal links.
-#
-# latex_show_pagerefs = False
-
-# If true, show URL addresses after external links.
-#
-# latex_show_urls = False
-
-# Documents to append as an appendix to all manuals.
-#
-# latex_appendices = []
-
-# It false, will not define \strong, \code, 	itleref, \crossref ... but only
-# \sphinxstrong, ..., \sphinxtitleref, ... To help avoid clash with user added
-# packages.
-#
-# latex_keep_old_macro_names = True
-
-# If false, no module index is generated.
-#
-# latex_domain_indices = True
-
-
-# -- Options for manual page output ---------------------------------------
-
-# One entry per manual page. List of tuples
-# (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, "reviewgraphminingrsd", "Review Graph Mining Review Spammer Detection Documentation", [author], 1)
-]
-
-# If true, show URL addresses after external links.
-#
-# man_show_urls = False
-
-
-# -- Options for Texinfo output -------------------------------------------
-
-# Grouping the document tree into Texinfo files. List of tuples
-# (source start file, target name, title, author,
-#  dir menu entry, description, category)
-texinfo_documents = [
-    (
-        master_doc,
-        "ReviewGraphMiningReviewSpammerDetection",
-        "Review Graph Mining Review Spammer Detection Documentation",
-        author,
-        "ReviewGraphMiningReviewSpammerDetection",
-        "One line description of project.",
-        "Miscellaneous",
-    ),
-]
-
-# Documents to append as an appendix to all manuals.
-#
-# texinfo_appendices = []
-
-# If false, no module index is generated.
-#
-# texinfo_domain_indices = True
-
-# How to display URL addresses: 'footnote', 'no', or 'inline'.
-#
-# texinfo_show_urls = 'footnote'
-
-# If true, do not generate a @detailmenu in the "Top" node's menu.
-#
-# texinfo_no_detailmenu = False
-
-
-# Example configuration for intersphinx: refer to the Python standard library.
-intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
-
-
-# -- Options for autodoc output -------------------------------------------
-
-autodoc_member_order = "groupwise"
-autodoc_typehints_format = "short"
