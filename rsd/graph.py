@@ -62,9 +62,9 @@ class Node:
 
     __slots__ = ("name", "_g")
 
-    def __init__(self, graph: "ReviewGraph", name: Optional[str] = None) -> None:
+    def __init__(self, graph: "ReviewGraph", name: str) -> None:
         self._g = graph
-        self.name = name if name else super().__str__()
+        self.name = name
 
     def __eq__(self, other: object) -> bool:
         if not isinstance(other, type(self)):
@@ -89,7 +89,7 @@ class Reviewer(Node):
 
     __slots__ = ("trustiness",)
 
-    def __init__(self, graph: "ReviewGraph", name: Optional[str] = None, anomalous: Optional[float] = None) -> None:
+    def __init__(self, graph: "ReviewGraph", name: str, anomalous: Optional[float] = None) -> None:
         super().__init__(graph, name)
 
         # If an initial anomalous score is given, use it.
@@ -144,8 +144,8 @@ class Product(Node):
 
     __slots__ = ("reliability",)
 
-    def __init__(self, graph: "ReviewGraph", name: Optional[str] = None):
-        super(Product, self).__init__(graph, name)
+    def __init__(self, graph: "ReviewGraph", name: str) -> None:
+        super().__init__(graph, name)
         self.reliability = 0.5
 
     @property
@@ -355,7 +355,7 @@ class ReviewGraph:
             self._delta = (max_time - min_time) * self._theta
         return self._delta
 
-    def new_reviewer(self, name: Optional[str] = None, anomalous: Optional[float] = None) -> Reviewer:
+    def new_reviewer(self, name: str, anomalous: Optional[float] = None) -> Reviewer:
         """Create a new reviewer.
 
         Args:
@@ -370,7 +370,7 @@ class ReviewGraph:
         self.reviewers.append(n)
         return n
 
-    def new_product(self, name: Optional[str] = None) -> Product:
+    def new_product(self, name: str) -> Product:
         """Create a new product.
 
         Args:
