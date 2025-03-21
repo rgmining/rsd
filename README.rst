@@ -41,7 +41,7 @@ This software is released under The GNU General Public License Version
    :target: https://codeclimate.com/github/rgmining/rsd/maintainability
 .. |Test Coverage| image:: https://api.codeclimate.com/v1/badges/6461704a370307ee0d55/test_coverage
    :target: https://codeclimate.com/github/rgmining/rsd/test_coverage
-.. |Release| image:: https://img.shields.io/badge/release-0.3.4-brightgreen.svg
+.. |Release| image:: https://img.shields.io/badge/release-0.3.5-brightgreen.svg
    :target: https://pypi.org/project/rgmining-rsd/
 .. |Logo| image:: https://rgmining.github.io/synthetic/_static/image.png
    :target: https://rgmining.github.io/rsd/
