@@ -89,7 +89,9 @@ class Reviewer(Node):
 
     __slots__ = ("trustiness",)
 
-    def __init__(self, graph: "ReviewGraph", name: str, anomalous: float | None = None) -> None:
+    def __init__(
+        self, graph: "ReviewGraph", name: str, anomalous: float | None = None
+    ) -> None:
         super().__init__(graph, name)
 
         # If an initial anomalous score is given, use it.
@@ -355,7 +357,9 @@ class ReviewGraph:
             self._delta = (max_time - min_time) * self._theta
         return self._delta
 
-    def new_reviewer(self, name: str, anomalous: float | None = None) -> Reviewer:
+    def new_reviewer(
+        self, name: str, anomalous: float | None = None
+    ) -> Reviewer:
         """Create a new reviewer.
 
         Args:
@@ -384,7 +388,13 @@ class ReviewGraph:
         self.products.append(n)
         return n
 
-    def add_review(self, reviewer: Reviewer, product: Product, review: float, time: int | None = None) -> Review:
+    def add_review(
+        self,
+        reviewer: Reviewer,
+        product: Product,
+        review: float,
+        time: int | None = None,
+    ) -> Review:
         """Add a new review.
 
         Args:
@@ -432,7 +442,9 @@ class ReviewGraph:
         return list(self.graph.successors(review))
 
     @cache
-    def retrieve_reviews_by_reviewer(self, reviewer: Reviewer) -> Collection[Review]:
+    def retrieve_reviews_by_reviewer(
+        self, reviewer: Reviewer
+    ) -> Collection[Review]:
         """Find reviews given by a reviewer.
 
         Args:
@@ -444,7 +456,9 @@ class ReviewGraph:
         return list(self.graph.successors(reviewer))
 
     @cache
-    def retrieve_reviews_by_product(self, product: Product) -> Collection[Review]:
+    def retrieve_reviews_by_product(
+        self, product: Product
+    ) -> Collection[Review]:
         """Find reviews to a product.
 
         Args:
@@ -455,7 +469,12 @@ class ReviewGraph:
         """
         return list(self.graph.predecessors(product))
 
-    def retrieve_reviews(self, review: Review, time_diff: float | None = None, score_diff: float = 0.25) -> ReviewSet:
+    def retrieve_reviews(
+        self,
+        review: Review,
+        time_diff: float | None = None,
+        score_diff: float = 0.25,
+    ) -> ReviewSet:
         """Find agree and disagree reviews.
 
         This method retrieve two groups of reviews.

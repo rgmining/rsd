@@ -62,7 +62,7 @@ sphinx-rtd-theme = "^3.0.2"
 
 [tool.ruff]
 target-version = "py311"
-line-length = 120
+line-length = 79
 
 [tool.pytest.ini_options]
 addopts = "--cov=rsd --cov-branch --cov-report=term-missing --cov-report=xml"
