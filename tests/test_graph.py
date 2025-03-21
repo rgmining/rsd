@@ -135,13 +135,17 @@ def test_retrieve_products(review_graph: ReviewGraph) -> None:
 
 def test_retrieve_reviews_by_reviewer(review_graph: ReviewGraph) -> None:
     """Test retrieve_reviews_by_reviewer method."""
-    reviews = review_graph.retrieve_reviews_by_reviewer(review_graph.reviewers[0])
+    reviews = review_graph.retrieve_reviews_by_reviewer(
+        review_graph.reviewers[0]
+    )
     assert set(reviews) == set(review_graph.reviews[:3])
 
 
 def test_retrieve_reviews_by_product(review_graph: ReviewGraph) -> None:
     """Test retrieve_reviews_by_product method."""
-    reviews = review_graph.retrieve_reviews_by_product(review_graph.products[2])
+    reviews = review_graph.retrieve_reviews_by_product(
+        review_graph.products[2]
+    )
     assert review_graph.reviews[2] in reviews
     assert review_graph.reviews[4] in reviews
 
