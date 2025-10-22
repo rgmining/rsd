@@ -37,7 +37,7 @@ This software is released under The GNU General Public License Version
    :target: https://www.gnu.org/copyleft/gpl.html
 .. |Build Status| image:: https://github.com/rgmining/rsd/actions/workflows/python-lib.yaml/badge.svg
    :target: https://github.com/rgmining/rsd/actions/workflows/python-lib.yaml
-.. |Release| image:: https://img.shields.io/badge/release-0.3.5-brightgreen.svg
+.. |Release| image:: https://img.shields.io/badge/release-0.3.6-brightgreen.svg
    :target: https://pypi.org/project/rgmining-rsd/
 .. |Logo| image:: https://rgmining.github.io/synthetic/_static/image.png
    :target: https://rgmining.github.io/rsd/
