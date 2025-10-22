@@ -1,7 +1,7 @@
 An implementation of Review Spammer Detection
 =============================================
 
-|GPLv3| |Build Status| |Maintainability| |Test Coverage| |Release|
+|GPLv3| |Build Status| |Release|
 
 |Logo|
 
@@ -37,10 +37,6 @@ This software is released under The GNU General Public License Version
    :target: https://www.gnu.org/copyleft/gpl.html
 .. |Build Status| image:: https://github.com/rgmining/rsd/actions/workflows/python-lib.yaml/badge.svg
    :target: https://github.com/rgmining/rsd/actions/workflows/python-lib.yaml
-.. |Maintainability| image:: https://api.codeclimate.com/v1/badges/6461704a370307ee0d55/maintainability
-   :target: https://codeclimate.com/github/rgmining/rsd/maintainability
-.. |Test Coverage| image:: https://api.codeclimate.com/v1/badges/6461704a370307ee0d55/test_coverage
-   :target: https://codeclimate.com/github/rgmining/rsd/test_coverage
 .. |Release| image:: https://img.shields.io/badge/release-0.3.5-brightgreen.svg
    :target: https://pypi.org/project/rgmining-rsd/
 .. |Logo| image:: https://rgmining.github.io/synthetic/_static/image.png
